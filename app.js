@@ -76,12 +76,52 @@ app.post('/articles/add', function(req, res){
   });
 });
 
-// Article GET Route
+// Load Edit Form
+app.get('/article/edit/:id', function(req, res){
+  Article.findById(req.params.id, function(err, article){
+    res.render('edit_article', {
+      article: article
+    });
+  });
+});
+
+// Get single Article
 app.get('/article/:id', function(req, res){
   Article.findById(req.params.id, function(err, article){
     res.render('article', {
       article: article
     });
+  });
+});
+
+// Update Submit POST Route
+app.post('/articles/edit/:id', function(req, res){
+  let article = {};
+  article.title = req.body.title;
+  article.author = req.body.author;
+  article.body = req.body.body;
+
+  let query ={_id:req.params.id}
+
+  Article.update(query, article, function(err){
+    if(err){
+      console.log(err);
+      return;
+    } else {
+      res.redirect('/');
+    }
+  });
+});
+
+// Delete article Route
+app.delete('/article/:id', function(req, res){
+  let query = {_id:req.params.id}
+
+  Article.remove(query, function(err){
+    if(err){
+      console.log(err);
+    }
+    res.send('Success');
   });
 });
 

@@ -9,12 +9,15 @@
   "author": "David Stonikas",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-messages": "^1.0.1",
     "express-session": "^1.15.3",
     "express-validator": "^3.2.0",
     "mongoose": "^4.11.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pug": "^2.0.0-rc.2"
   }
 }

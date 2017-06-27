@@ -20,11 +20,20 @@ html
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              a(href='/')
-                | Home
-                span.sr-only (current)
-            li
-              a(href='/articles/add') Add Article
+              a(href='/') Home
+              if user
+                li
+                  a(href='/articles/add') Add Article
+              
+          ul.nav.navbar-nav.navbar-right
+            if user
+              li 
+                a(href='/users/logout') Logout
+            else 
+              li
+                a(href='/users/register') Register
+              li
+                a(href='/users/login') Login
       
     .container
       != messages('message',locals)
